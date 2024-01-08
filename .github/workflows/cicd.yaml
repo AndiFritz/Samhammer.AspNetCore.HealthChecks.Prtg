@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      solutionPath: .\src
+      solutionPath: .\src\Samhammer.AspNetCore.HealthChecks.Prtg.sln
     
     steps:
     - name: Checkout repository
