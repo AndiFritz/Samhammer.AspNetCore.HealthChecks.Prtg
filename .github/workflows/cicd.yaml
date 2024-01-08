@@ -8,9 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    env:
-      solutionPath: .\src\Samhammer.AspNetCore.HealthChecks.Prtg.sln
     
     steps:
     - name: Checkout repository
@@ -22,10 +19,12 @@ jobs:
         dotnet-version: '8.0'  # Change this to your preferred .NET version
 
     - name: Build
-      run: dotnet build ${{env.solutionPath}} -c Release
+      run: dotnet build -c Release
+      working-directory: src
 
     - name: Test
-      run: dotnet test ${{env.solutionPath}}
+      run: dotnet test
+      working-directory: src
 
   publish:
     needs: build
@@ -41,7 +40,8 @@ jobs:
         dotnet-version: '8.0'  # Change this to your preferred .NET version
 
     - name: Create NuGet package
-      run: dotnet pack ${{env.solutionPath}} -c Release --include-symbols -o ./nuget
+      run: dotnet pack -c Release --include-symbols -o ./nuget
+      working-directory: dart_project
 
     - name: Publish to NuGet
       uses: nuget/push@v0.8.4
