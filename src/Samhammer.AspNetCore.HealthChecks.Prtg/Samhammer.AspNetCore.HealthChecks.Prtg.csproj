@@ -10,7 +10,6 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Description>PRTG HealthChecks for .NET Core projects</Description>
-    <LangVersion>12</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
