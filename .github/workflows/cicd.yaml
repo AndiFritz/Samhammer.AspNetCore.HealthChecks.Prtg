@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      solutionPath: .\src\
+      solutionPath: .\src
     
     steps:
     - name: Checkout repository
