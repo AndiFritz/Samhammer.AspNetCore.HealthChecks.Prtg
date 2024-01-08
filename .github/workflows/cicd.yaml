@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    env:
+      solutionPath: .\src\
     
     steps:
     - name: Checkout repository
@@ -19,10 +22,10 @@ jobs:
         dotnet-version: '8.0'  # Change this to your preferred .NET version
 
     - name: Build
-      run: dotnet build -c Release
+      run: dotnet build ${{env.solutionPath}} -c Release
 
     - name: Test
-      run: dotnet test
+      run: dotnet test ${{env.solutionPath}}
 
   publish:
     needs: build
@@ -38,7 +41,7 @@ jobs:
         dotnet-version: '8.0'  # Change this to your preferred .NET version
 
     - name: Create NuGet package
-      run: dotnet pack -c Release --include-symbols -o ./nuget
+      run: dotnet pack ${{env.solutionPath}} -c Release --include-symbols -o ./nuget
 
     - name: Publish to NuGet
       uses: nuget/push@v0.8.4
