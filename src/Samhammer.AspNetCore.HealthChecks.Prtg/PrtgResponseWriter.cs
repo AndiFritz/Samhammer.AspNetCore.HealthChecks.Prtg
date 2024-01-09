@@ -12,9 +12,13 @@ namespace Samhammer.AspNetCore.HealthChecks.Prtg
 {
     public static class PrtgResponseWriter
     {
-        private static readonly JsonSerializerOptions SerializerSettings = new JsonSerializerOptions
+        private static readonly JsonSerializerOptions SerializerSettings = new()
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            Converters =
+            {
+                new ChannelValueConverter(),
+            },
         };
 
         public static Task WriteHealthCheckPrtgResponse(HttpContext httpContext, HealthReport report)
